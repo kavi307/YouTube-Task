@@ -11,10 +11,10 @@ const Sidebar = () => {
     <div
       style={{
         position: "fixed",
-        top: 60,
+        top: 80,
         left: 0,
         height: "100vh",
-        width: "140px",  // You can adjust the width
+        width: "140px", 
         overflowY: "auto",
         background : "white"
       }}

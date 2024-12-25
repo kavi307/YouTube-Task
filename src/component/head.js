@@ -68,7 +68,7 @@ const Head = () => {
         </button>
 
         {suggestions.length > 0 && (
-          <ul className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-1/2 border border-gray-300 bg-white shadow-lg rounded-lg">
+          <ul className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-1/2 border border-gray-300 bg-white shadow-lg rounded-lg text-left">
             {suggestions.map((item, index) => (
               <li
                 key={index}

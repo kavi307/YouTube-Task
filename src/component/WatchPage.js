@@ -6,25 +6,25 @@ import CommentsContainer from "./CommentsContainer";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
-  const [isSubscribed, setIsSubscribed] = useState(false); // Track subscription state
-  const [isNotified, setIsNotified] = useState(false); // Track notification state
-  const [isLiked, setIsLiked] = useState(false); // Track like state
-  const [likeCount, setLikeCount] = useState(0); // Track like count
+  const [isSubscribed, setIsSubscribed] = useState(false); 
+  const [isNotified, setIsNotified] = useState(false); 
+  const [isLiked, setIsLiked] = useState(false); 
+  const [likeCount, setLikeCount] = useState(0); 
   
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(closeMenu());
-    fetchLikeCount(); // Fetch the like count when the page loads
+    fetchLikeCount(); 
   }, [dispatch]);
 
-  // Function to handle subscribe action
+  
   const handleSubscribe = () => {
     setIsSubscribed(true);
     console.log("Subscribed to the channel!");
   };
 
-  // Function to handle bell icon click (for notifications)
+ 
   const handleBellClick = () => {
     setIsNotified(!isNotified); // Toggle notification state
     console.log(isNotified ? "Turned off notifications" : "Turned on notifications");
@@ -32,16 +32,16 @@ const WatchPage = () => {
 
   // Function to handle like action
   const handleLike = () => {
-    setIsLiked(!isLiked); // Toggle like state
+    setIsLiked(!isLiked); 
     if (isLiked) {
-      setLikeCount(likeCount - 1); // Decrease like count if unliked
+      setLikeCount(likeCount - 1); 
     } else {
-      setLikeCount(likeCount + 1); // Increase like count if liked
+      setLikeCount(likeCount + 1); 
     }
     console.log(isLiked ? "Unliked the video" : "Liked the video");
   };
 
-  // Fetch the like count from YouTube API
+  //YouTube API
   const fetchLikeCount = async () => {
     const videoId = searchParams.get("v");
     try {
@@ -50,18 +50,18 @@ const WatchPage = () => {
       );
       const data = await response.json();
       const likeCount = data.items[0]?.statistics.likeCount || 0;
-      setLikeCount(likeCount); // Set the actual like count
+      setLikeCount(likeCount); 
     } catch (error) {
       console.error("Error fetching like count:", error);
     }
   };
 
-  // Function to handle Share button click (copy the video URL)
+  
   const handleShare = () => {
-    const videoUrl = window.location.href; // Get the current video URL
+    const videoUrl = window.location.href; 
     navigator.clipboard.writeText(videoUrl).then(() => {
       console.log("Video URL copied to clipboard!");
-      alert("Video URL copied to clipboard!"); // Optional: Show an alert
+      alert("Video URL copied to clipboard!");
     }).catch((error) => {
       console.error("Failed to copy URL:", error);
     });
